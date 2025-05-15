@@ -1,10 +1,16 @@
-with import <nixpkgs> {};
-
+{
+  lib,
+  stdenv,
+  pkgs ?
+    import (builtins.fetchTarball {
+      url = "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+    }) {},
+}:
 stdenv.mkDerivation {
   name = "CasterSoundboard";
   src = ./CasterSoundboard;
-  nativeBuildInputs = [ qt5.qmakeHook qt5.makeQtWrapper ];
-  buildInputs = [
+  nativeBuildInputs = [qt5.qmakeHook qt5.makeQtWrapper];
+  buildInputs = with pkgs; [
     qt5.qtmultimedia
     gst_all_1.gst-plugins-base
     gst_all_1.gst-plugins-good
