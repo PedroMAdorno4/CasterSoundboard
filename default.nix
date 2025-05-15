@@ -9,7 +9,7 @@
 stdenv.mkDerivation {
   name = "CasterSoundboard";
   src = ./CasterSoundboard;
-  nativeBuildInputs = [qt5.qmakeHook qt5.makeQtWrapper];
+  nativeBuildInputs = with pkgs; [qt5.qmakeHook qt5.makeQtWrapper];
   buildInputs = with pkgs; [
     qt5.qtmultimedia
     gst_all_1.gst-plugins-base
